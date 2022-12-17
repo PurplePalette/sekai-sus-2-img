@@ -27,7 +27,8 @@ const svgChart2png = async (svgString) => {
 
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
+const protocol = process.env.DEV ? 'http' : 'https';
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -44,7 +45,7 @@ app.set('view engine', 'ejs')
 app.post("/", async(req, res) => {
     const chart = req.body.chart;
     const newChart = preprocessChart(chart);
-    const url = `${req.protocol}://${req.headers.host}`;
+    const url = `${protocol}://${req.headers.host}`;
     console.log(url);
     const svgString = chart2svg(newChart, `${url}/asset`, pixelsPerBeat);
     res.render('portrait', {svgString: svgString})
@@ -53,7 +54,7 @@ app.post("/", async(req, res) => {
 app.post('/landscape', async(req, res) => {
     const chart = req.body.chart;
     const newChart = preprocessChart(chart);
-    const url = `${req.protocol}://${req.headers.host}`;
+    const url = `${protocol}://${req.headers.host}`;
     console.log(url);
     const svgString = chart2svg(newChart, `${url}/asset`, pixelsPerBeat);
     // vercelは横長に対応してないので縦長で生成

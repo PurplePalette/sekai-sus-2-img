@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>PjsekaiSUS2img</title>
         <script>
             var pixelsPerBeat = parseInt("<%= pixelsPerBeat %>");
             var pngString = "<%= pngString %>";
@@ -13,8 +15,12 @@
         <style>
             body {
                 background-color: #003040;
+                background-image: url('background.webp');
+                background-attachment: fixed;
+                background-size: cover;
+                padding-top: 5rem;
             }
-            .container {
+            .chart-container {
                 display:flex;
                 padding: 10px;
                 align-items: flex-start;
@@ -23,7 +29,7 @@
             .landscape {
                 background-color: #000000;
                 display: flex;
-                border: 8px solid #ba55d3;
+                border: 8px solid #7a417c;
                 border-radius: 10px;
                 margin-left: 10px;
             }
@@ -33,9 +39,6 @@
                 color: white;
                 cursor: pointer;
                 font-size: 20px;
-                position: -webkit-sticky;
-                position: sticky;
-                top: 0;
                 padding: 3px;
             }
             .btn:hover {
@@ -43,7 +46,7 @@
             }
             #chart {
                 background-color: #000000;
-                border: 8px solid #ba55d3;
+                border: 8px solid #7a417c;
                 border-radius: 10px;
             }
             #chart-landscape {
@@ -52,15 +55,29 @@
         </style>
     </head>
     <body>
-        <div><font color="white">変換時間: <%= elapsedTime %>ms</font></div>
-        <div class="container">
-            <div id="chart">
-                <%- svgString %>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">PjsekaiSUS to Image Converter</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="chart-container">
+                <div id="chart">
+                    <%- svgString %>
+                </div>
+                <div class="landscape">
+                    <div><button class="btn" onclick="download()"><i class="fa fa-download">DL</i></button></div>
+                    <canvas id="chart-landscape" width="160px"></canvas>
+                </div>
             </div>
-            <div class="landscape">
-                <div><button class="btn" onclick="download()"><i class="fa fa-download">DL</i></button></div>
-                <canvas id="chart-landscape" width="160px"></canvas>
+        </main>
+        <footer class="footer mt-4 py-1 bg-light fixed-bottom">
+            <div class="container text-center">
+              <p class="text-muted">&copy; 2022 PurplePalette</p>
+              <p class="text-muted">Source: <a href="https://github.com/PurplePalette/sekai-sus-2-img">Github</a></>
             </div>
-        </div>
+        </footer>
     </body>
     </html>

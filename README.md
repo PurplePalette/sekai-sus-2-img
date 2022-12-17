@@ -1,8 +1,8 @@
 # SekaiSUS2img
 Convert Project Sekai SUS to Image  
-[new]
-https://sus2img.palettetool.com/
-[old]
+[new]  
+https://sus2img.palettetool.com/  
+[old]  
 https://sekai-sus-2img.vercel.app/
 
 ## Original Source

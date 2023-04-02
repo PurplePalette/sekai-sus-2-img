@@ -27,7 +27,7 @@ const svgChart2png = async (svgString) => {
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 const protocol = process.env.DEV ? 'http' : 'https';
 
 app.use(express.static(path.join(__dirname, "public")));
